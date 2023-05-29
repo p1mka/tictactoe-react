@@ -1,0 +1,11 @@
+.game {
+  align-items: center;
+}
+.playground {
+  width: 450px;
+  height: 450px;
+  border: 2px solid black;
+  background: #fff;
+  margin-top: 30vh;
+  margin-left: 40%;
+}

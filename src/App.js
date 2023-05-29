@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+import styles from "./App.module.css";
+import { Playground } from "./components/render-playground";
+import { Restart } from "./components/restart";
+
+export default function App() {
+  const [moves, setMoves] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = moves[currentMove];
+
+  function handlePlay(nextSquares) {
+    const nextMove = [...moves.slice(0, currentMove + 1), nextSquares];
+    setMoves(nextMove);
+    setCurrentMove(nextMove.length - 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.playground}>
+      <Playground
+        xIsNext={xIsNext}
+        squares={currentSquares}
+        onPlay={handlePlay}
+      />
+      <Restart setMoves={setMoves} setCurrentMove={setCurrentMove} />
     </div>
   );
 }
-
-export default App;

@@ -1,0 +1,8 @@
+.restart {
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  margin-left: 33.3%;
+  margin-top: 10px;
+  cursor: pointer;
+}
